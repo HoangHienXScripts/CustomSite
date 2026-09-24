@@ -1,4 +1,4 @@
-import {countdown, points_handle} from "./uhhh_smth.js";
+import {convert, countdown, points_handle} from "./uhhh_smth.js";
 async function render_content() {
     const box = document.getElementById("updated-content");
     if (!box) {
