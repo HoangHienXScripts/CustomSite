@@ -11,7 +11,9 @@ async function render_content() {
         if (!rep.ok || !cdx.ok) {
             box.innerHTML = "<p>Failed to fetch smth...</p>";
         }
-        box.innerHTML = await rep.text();
+        const result_a = await rep.text();
+        let result_b = await cdx.text();
+        box.innerHTML = result_a;
         countdown();
         points_handle();
     } catch (err) {
