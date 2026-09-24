@@ -20,3 +20,16 @@ export function countdown() {
         }
     }, 1000); // argument số 2 có vẻ là số lần, như for i = 1, 1000 do trong lua
 }
+
+export function points_handle() {
+    const displayer = document.getElementById("uh_point");
+    const adder = document.getElementById("add_uh_point");
+    
+    let points = Number(localStorage.getItem("Points")) || 0;
+    displayer.textContent = points;
+    adder.addEventListener("click", () => {
+        points += 1;
+        localStorage.setItem("Points", points);
+        displayer.textContent = points;
+    });
+}
