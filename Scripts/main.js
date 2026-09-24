@@ -7,8 +7,9 @@ async function render_content() {
     }
     try {
         const rep = await fetch("Updates/body.html", {cache:"no-store"});
-        if (!rep.ok) {
-            throw new Error(`Failed to load updates: ${rep.status} ${rep.statusText}`);
+        const cdx = await fetch("Updates/script_updates", {cache:"no-store"});
+        if (!rep.ok || !cdx.ok) {
+            box.innerHTML = "<p>Failed to fetch smth...</p>";
         }
         box.innerHTML = await rep.text();
         countdown();
