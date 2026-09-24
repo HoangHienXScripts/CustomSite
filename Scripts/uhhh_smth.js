@@ -1,21 +1,31 @@
+const REFRESH_TIME_SECONDS = 300;
+
 export function countdown() {
-  let timeLeft = 300;
+    const countdownElement = document.getElementById("countdown");
 
-  const countdown = document.getElementById("countdown");
-
-  const timer = setInterval(() => {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-
-    countdown.textContent =
-      String(minutes).padStart(2, "0") + ":" +
-      String(seconds).padStart(2, "0");
-
-    timeLeft--;
-
-    if (timeLeft < 0) {
-      clearInterval(timer);
-      location.reload();
+    if (!countdownElement) {
+        console.error("The #countdown element was not found.");
+        return;
     }
-  }, 1000);
+
+    let timeLeft = REFRESH_TIME_SECONDS;
+
+    const updateCountdown = () => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+
+        countdownElement.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    };
+
+    updateCountdown();
+
+    const timer = setInterval(() => {
+        timeLeft -= 1;
+        updateCountdown();
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            window.location.reload();
+        }
+    }, 1000);
 }
