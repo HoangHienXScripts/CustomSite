@@ -1,3 +1,10 @@
+export function convert(str) {
+    return str.split("\n").map(line => {
+        const [day, content] = line.split("~");
+        return `<h2><b>${day}:</b> <p>${content}</p></h2>`;
+    }).join("\n");
+}
+
 export function countdown() {
     const html_cd_path = document.getElementById("countdown");
     if (!html_cd_path) { // ok, đã hiểu... cơ bản cái này giống if not html_cd_path then print err return end
