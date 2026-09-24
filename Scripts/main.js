@@ -1,5 +1,5 @@
-import {countdown} from "./uhhh_smth.js";
-async function load_content() {
+import {countdown, points_handle} from "./uhhh_smth.js";
+async function render_content() {
     const box = document.getElementById("updated-content");
     if (!box) {
         console.error("The #updated-content element was not found.");
@@ -12,9 +12,10 @@ async function load_content() {
         }
         box.innerHTML = await rep.text();
         countdown();
+        points_handle();
     } catch (err) {
         console.error(err);
         box.innerHTML = "<p>Unable to load updates right now.</p>";
     }
 }
-load_content();
+render_content();
