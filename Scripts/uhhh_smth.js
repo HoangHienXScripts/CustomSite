@@ -32,6 +32,8 @@ function countdown() {
 function points_handle() {
     const displayer = document.getElementById("uh_point");
     const adder = document.getElementById("add_uh_point");
+    const suber = document.getElementById("sub_uh_point");
+    const reset = document.getElementById("res_uh_point");
     
     let points = Number(localStorage.getItem("Points")) || 0;
     displayer.textContent = points;
@@ -39,6 +41,15 @@ function points_handle() {
         points += 1;
         localStorage.setItem("Points", points);
         displayer.textContent = points;
+    });
+    suber.addEventListener("click", () => {
+        points -= 1;
+        localStorage.setItem("Points", points);
+        displayer.textContent = points;
+    });
+    reset.addEventListener("click", () => {
+        localStorage.clear();
+        displayer.textContent = 0;
     });
 }
 
