@@ -1,10 +1,6 @@
 import {helper_func as hf} from "./uhhh_smth.js";
 async function render_content() {
-    const box = document.getElementById("updated-content");
-    if (!box) {
-        console.error("The #updated-content element was not found.");
-        return;
-    }
+    const box = hf.id("updated-content");
     try {
         const rep = await fetch("Updates/body.html", {cache:"no-store"});
         const cdx = await fetch("Updates/script_updates", {cache:"no-store"});
