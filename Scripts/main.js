@@ -3,8 +3,7 @@ async function render_content() {
     const box = hf.id("updated-content");
     if (typeof box !== "object") { return; };
     try {
-        const rep = await fetch("Updates/body.html", {cache:"no-store"});
-        const cdx = await fetch("Updates/script_updates", {cache:"no-store"});
+        const [rep, cdx] = await Promise.all([fetch("Updates/body.html", {cache:"no-store"}), fetch("Updates/script_updates", {cache:"no-store"})]);
         if (!rep.ok || !cdx.ok) {
             box.innerHTML = "<p>Failed to fetch smth...</p>";
         }
