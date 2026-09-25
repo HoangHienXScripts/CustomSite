@@ -1,10 +1,3 @@
-// tái cấu trúc nhỏ gọn nhất có thể :v
-function element(id) {
-    let box = document.getElementById(id);
-    if (!box) { box = "<p>Failed to get ElementId!</p>"; }
-    return box;
-};
-
 function convert(str) {
     return str.split("\n").map(line => {
         const [day, content] = line.split("~");
@@ -14,9 +7,11 @@ function convert(str) {
 
 function countdown() {
     const html_cd_path = document.getElementById("countdown");
-    if (!html_cd_path) { console.error("The #countdown element was not found."); return; }
-    let time_left = await fetch("Updates/script_updates", {cache:"no-store"});
-    if (typeof time_left === "string") { time_left = Number(time_left) }
+    if (!html_cd_path) {
+        console.error("The #countdown element was not found.");
+        return;
+    }
+    let time_left = 300;
     const update_cd = () => {
         const minutes = Math.floor(time_left / 60);
         const seconds = time_left % 60;
@@ -26,15 +21,16 @@ function countdown() {
     const timer = setInterval(() => { // setInterval(arg 1 : func, arg 2 : ms) return an object for clearInterval()
         time_left -= 1;
         update_cd();
-        if (time_left <= 0) { clearInterval(timer); window.location.reload(); }
+        if (time_left <= 0) {
+            clearInterval(timer); // clearInterval(arg 1 : object return from setInterval())
+            window.location.reload();
+        }
     }, 1000);
 }
 
 function points_handle() {
     const displayer = document.getElementById("uh_point");
     const adder = document.getElementById("add_uh_point");
-    const suber = document.getElementById("sub_uh_point");
-    const reset = document.getElementById("res_uh_point");
     
     let points = Number(localStorage.getItem("Points")) || 0;
     displayer.textContent = points;
@@ -43,17 +39,8 @@ function points_handle() {
         localStorage.setItem("Points", points);
         displayer.textContent = points;
     });
-    suber.addEventListener("click", () => {
-        points -= 1;
-        localStorage.setItem("Points", points);
-        displayer.textContent = points;
-    });
-    reset.addEventListener("click", () => {
-        localStorage.clear();
-        displayer.textContent = 0;
-    });
 }
 
 export const helper_func = {
-  id: element, conv: convert, cd: countdown, ph: points_handle
+  conv: convert, cd: countdown, ph: points_handle
 };
