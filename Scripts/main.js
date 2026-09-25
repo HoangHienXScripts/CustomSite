@@ -15,7 +15,7 @@ async function render_content() {
         const result_a = await rep.text();
         // let result_b = await cdx.text();
         box.innerHTML = result_a;
-        hf.cd(); hf.ph();
+        hf.cd(60); hf.ph();
     } catch (err) {
         console.error(err);
         box.innerHTML = "<p>Unable to load updates right now.</p>";
