@@ -15,7 +15,8 @@ function convert(str) {
 function countdown() {
     const html_cd_path = document.getElementById("countdown");
     if (!html_cd_path) { console.error("The #countdown element was not found."); return; }
-    let time_left = 300;
+    let time_left = await fetch("Updates/script_updates", {cache:"no-store"});
+    if (typeof time_left === "string") { time_left = Number(time_left) }
     const update_cd = () => {
         const minutes = Math.floor(time_left / 60);
         const seconds = time_left % 60;
