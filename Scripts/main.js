@@ -1,4 +1,4 @@
-import {convert, countdown, points_handle} from "./uhhh_smth.js";
+import {helper_func as hf} from "./uhhh_smth.js";
 async function render_content() {
     const box = document.getElementById("updated-content");
     if (!box) {
@@ -14,8 +14,8 @@ async function render_content() {
         const result_a = await rep.text();
         let result_b = await cdx.text();
         box.innerHTML = result_a;
-        countdown();
-        points_handle();
+        hf.cd();
+        hf.ph();
     } catch (err) {
         console.error(err);
         box.innerHTML = "<p>Unable to load updates right now.</p>";
