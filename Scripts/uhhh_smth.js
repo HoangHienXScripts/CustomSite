@@ -29,39 +29,37 @@ function countdown(TIME_LEFT) {
 }
 
 function points_handle() {
+    let points = Number(localStorage.getItem("Points")) || 0;
     const displayer = document.getElementById("uh_point");
     const adder = document.getElementById("add_uh_point");
     const suber = document.getElementById("sub_uh_point");
     const reset = document.getElementById("res_uh_point");
     const multi = document.getElementById("mul_uh_point");
     const divis = document.getElementById("div_uh_point");
-    
-    let points = Number(localStorage.getItem("Points")) || 0;
-    displayer.textContent = points;
-    adder.addEventListener("click", () => {
-        points += 1;
-        localStorage.setItem("Points", points);
+    const updt_pt = (v) => {
+        points = v;
+        localStorage.setItem("Points", points;
         displayer.textContent = points;
+    }
+    
+    displayer.textContent = points;
+    
+    adder.addEventListener("click", () => {
+        updt_pt(points += 1);
     });
     suber.addEventListener("click", () => {
-        points -= 1;
-        localStorage.setItem("Points", points);
-        displayer.textContent = points;
+        updt_pt(points -= 1);
     });
     multi.addEventListener("click", () => {
-        if (points !== 0 || points !== 1 || points !== -1) {
-            points *= points;
-            localStorage.setItem("Points", points);
-            displayer.textContent = points;
+        if (points !== 0 && points !== 1 && points !== -1) {
+            updt_pt(points *= points);
         } else {
             displayer.textContent = "invalid number for mul";
         }
     });
     divis.addEventListener("click", () => {
-        if (points !== 0 || points !== 1 || points !== -1) {
-            points /= points;
-            localStorage.setItem("Points", points);
-            displayer.textContent = points;
+        if (points !== 0 && points !== 1 && points !== -1) {
+            updt_pt(points /= points);
         } else {
             displayer.textContent = "invalid number for div";
         }
