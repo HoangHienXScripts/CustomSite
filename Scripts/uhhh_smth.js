@@ -5,13 +5,13 @@ function convert(str) {
     }).join("\n");
 }
 
-function countdown() {
+function countdown(TIME_LEFT) {
     const html_cd_path = document.getElementById("countdown");
     if (!html_cd_path) {
         console.error("The #countdown element was not found.");
         return;
     }
-    let time_left = 120;
+    let time_left = TIME_LEFT || 10;
     const update_cd = () => {
         const minutes = Math.floor(time_left / 60);
         const seconds = time_left % 60;
@@ -33,6 +33,8 @@ function points_handle() {
     const adder = document.getElementById("add_uh_point");
     const suber = document.getElementById("sub_uh_point");
     const reset = document.getElementById("res_uh_point");
+    const multi = document.getElementById("mul_uh_point");
+    const divis = document.getElementById("div_uh_point");
     
     let points = Number(localStorage.getItem("Points")) || 0;
     displayer.textContent = points;
@@ -45,6 +47,24 @@ function points_handle() {
         points -= 1;
         localStorage.setItem("Points", points);
         displayer.textContent = points;
+    });
+    multi.addEventListener("click", () => {
+        if (points !== 0 || points !== 1 || points !== -1) {
+            points *= points;
+            localStorage.setItem("Points", points);
+            displayer.textContent = points;
+        } else {
+            displayer.textContent = "invalid number for mul";
+        }
+    });
+    divis.addEventListener("click", () => {
+        if (points !== 0 || points !== 1 || points !== -1) {
+            points /= points;
+            localStorage.setItem("Points", points);
+            displayer.textContent = points;
+        } else {
+            displayer.textContent = "invalid number for div";
+        }
     });
     reset.addEventListener("click", () => {
         points = 0;
