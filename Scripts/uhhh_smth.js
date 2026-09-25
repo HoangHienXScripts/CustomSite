@@ -11,7 +11,7 @@ function countdown() {
         console.error("The #countdown element was not found.");
         return;
     }
-    let time_left = 300;
+    let time_left = 120;
     const update_cd = () => {
         const minutes = Math.floor(time_left / 60);
         const seconds = time_left % 60;
