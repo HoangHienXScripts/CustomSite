@@ -1,3 +1,11 @@
+function element(id) {
+    let box = document.getElementById(id);
+    if (!box) {
+        box = "<p>Failed to get ElementId!</p>";
+    };
+    return box;
+};
+
 function convert(str) {
     return str.split("\n").map(line => {
         const [day, content] = line.split("~");
@@ -42,5 +50,5 @@ function points_handle() {
 }
 
 export const helper_func = {
-  conv: convert, cd: countdown, ph: points_handle
+  id: element, conv: convert, cd: countdown, ph: points_handle
 };
