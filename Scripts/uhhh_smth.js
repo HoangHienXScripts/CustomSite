@@ -1,4 +1,4 @@
-import {funcs as f} from "./module.js"
+import {funcs as f} from "./module.js";
 
 function convert(str) {
     return str.split("\n").map(line => {
@@ -8,17 +8,17 @@ function convert(str) {
 }
 
 function set_clipboard(id) {
-    const board = document.getElementById(id);
-    const text = board.innerText;
+    const board = f.id(id);
+    const text = f.get_content(id, 0);
     navigator.clipboard.writeText(text).then(() => {
-        board.textContent = `Copied: ${text}`;
+        f.set_content(id, `Copied: ${text}`);
     }).catch(err => {
-        board.textContent = `Failed: ${err}`;
+        f.set_content(id, `Failed: ${err}`);
     });
 }
 
 function countdown(TIME_LEFT) {
-    const html_cd_path = document.getElementById("countdown");
+    const html_cd_path = f.id("countdown");
     if (!html_cd_path) {
         console.error("The #countdown element was not found.");
         return;
@@ -27,7 +27,7 @@ function countdown(TIME_LEFT) {
     const update_cd = () => {
         const minutes = Math.floor(time_left / 60);
         const seconds = time_left % 60;
-        html_cd_path.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+        f.set_content("countdown", `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`);
     };
     update_cd();
     const timer = setInterval(() => { // setInterval(arg 1 : func, arg 2 : ms) return an object for clearInterval()
@@ -42,20 +42,18 @@ function countdown(TIME_LEFT) {
 
 function points_handle() {
     let points = Number(localStorage.getItem("Points")) || 0;
-    const displayer = document.getElementById("uh_point");
-    const adder = document.getElementById("add_uh_point");
-    const suber = document.getElementById("sub_uh_point");
-    const reset = document.getElementById("res_uh_point");
-    const multi = document.getElementById("mul_uh_point");
-    const divis = document.getElementById("div_uh_point");
-    const keyid = document.getElementById("add_key");
+    const adder = f.id("add_uh_point");
+    const suber = f.id("sub_uh_point");
+    const reset = f.id("res_uh_point");
+    const multi = f.id("mul_uh_point");
+    const divis = f.id("div_uh_point");
     const updt_pt = (v) => {
         points = v;
         localStorage.setItem("Points", points);
-        displayer.textContent = points;
+        f.set_content("uh_point", points);
     }
     
-    displayer.textContent = points;
+    f.set_content("uh_point", points);
     
     adder.addEventListener("click", () => {
         updt_pt(points + 1);
@@ -67,21 +65,21 @@ function points_handle() {
         if (points !== 0 && points !== 1 && points !== -1) {
             updt_pt(points * points);
         } else {
-            displayer.textContent = "invalid number for mul";
+            f.set_content("uh_point", "invalid number for mul");
         }
     });
     divis.addEventListener("click", () => {
         if (points !== 0 && points !== 1 && points !== -1) {
             updt_pt(points / points);
         } else {
-            displayer.textContent = "invalid number for div";
+            f.set_content("uh_point", "invalid number for div");
         }
     });
     reset.addEventListener("click", () => {
-        if (points === 24 || points === -24) { keyid.textContent = "ehto2026"; }
+        if (points === 24 || points === -24) { f.set_content("add_key", "ehto2026"); }
         points = 0;
         localStorage.clear();
-        displayer.textContent = points;
+        f.set_content("uh_point", points);
     });
 }
 
