@@ -83,6 +83,10 @@ function points_handle() {
     });
 }
 
+function key_handle() { // for fun
+    const is_k = "nil";
+}
+
 export const helper_func = {
   conv: convert, scb: set_clipboard, cd: countdown, ph: points_handle
 };
