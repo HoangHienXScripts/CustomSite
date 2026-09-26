@@ -38,28 +38,28 @@ function points_handle() {
     const divis = document.getElementById("div_uh_point");
     const updt_pt = (v) => {
         points = v;
-        localStorage.setItem("Points", points;
+        localStorage.setItem("Points", points);
         displayer.textContent = points;
     }
     
     displayer.textContent = points;
     
     adder.addEventListener("click", () => {
-        updt_pt(points += 1);
+        updt_pt(points + 1);
     });
     suber.addEventListener("click", () => {
-        updt_pt(points -= 1);
+        updt_pt(points - 1);
     });
     multi.addEventListener("click", () => {
         if (points !== 0 && points !== 1 && points !== -1) {
-            updt_pt(points *= points);
+            updt_pt(points * points);
         } else {
             displayer.textContent = "invalid number for mul";
         }
     });
     divis.addEventListener("click", () => {
         if (points !== 0 && points !== 1 && points !== -1) {
-            updt_pt(points /= points);
+            updt_pt(points / points);
         } else {
             displayer.textContent = "invalid number for div";
         }
