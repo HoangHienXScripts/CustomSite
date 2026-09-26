@@ -5,6 +5,16 @@ function convert(str) {
     }).join("\n");
 }
 
+function set_clipboard(id) {
+    const board = document.getElementById(id);
+    const text = board.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        board.textContent = `Copied: ${text}`;
+    }).catch(err => {
+        board.textContent = `Failed: ${err}`;
+    });
+}
+
 function countdown(TIME_LEFT) {
     const html_cd_path = document.getElementById("countdown");
     if (!html_cd_path) {
@@ -74,5 +84,5 @@ function points_handle() {
 }
 
 export const helper_func = {
-  conv: convert, cd: countdown, ph: points_handle
+  conv: convert, scb: set_clipboard, cd: countdown, ph: points_handle
 };
