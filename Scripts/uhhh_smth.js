@@ -1,3 +1,5 @@
+import {funcs as f} from "./module.js"
+
 function convert(str) {
     return str.split("\n").map(line => {
         const [day, content] = line.split("~");
