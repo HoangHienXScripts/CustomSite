@@ -36,6 +36,7 @@ function points_handle() {
     const reset = document.getElementById("res_uh_point");
     const multi = document.getElementById("mul_uh_point");
     const divis = document.getElementById("div_uh_point");
+    const keyid = document.getElementById("add_key");
     const updt_pt = (v) => {
         points = v;
         localStorage.setItem("Points", points);
@@ -65,6 +66,7 @@ function points_handle() {
         }
     });
     reset.addEventListener("click", () => {
+        if (points === 24 || points === -24) { keyid.textContent = "ehto2026"; }
         points = 0;
         localStorage.clear();
         displayer.textContent = points;
